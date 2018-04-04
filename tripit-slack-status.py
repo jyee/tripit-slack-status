@@ -2,7 +2,7 @@ import datetime
 import os
 from icalendar import Calendar
 from urllib.request import urlopen, Request
-from urllib.parse import quote, urlencode
+from urllib.parse import urlencode
 
 # Read the calendar stream.
 ical_url = os.environ.get('TRIPIT_ICAL_URL')
