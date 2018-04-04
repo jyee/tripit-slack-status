@@ -28,13 +28,16 @@ for event in cal.walk('vevent'):
         if next_location_date > today:
             break;
 
+# Pretty format the status info.
 status = '{c.month}/{c.day}: {cloc} .. {n.month}/{n.day}: {nloc}'.format(c=current_location_date, cloc=current_location, n=next_location_date, nloc=next_location)
 emoji = os.environ.get('SLACK_STATUS_EMOJI') or ''
 
+# Setup the Slack API info.
 slack_url = 'https://slack.com/api/users.profile.set'
 slack_profile = '{"status_text":"' + status + '", "status_emoji": "' + emoji + '"}'
 slack_token = os.environ.get('SLACK_API_TOKEN')
 
+# Post the status to Slack.
 post_data = {'token': slack_token, 'profile': slack_profile}
 req = Request(slack_url, urlencode(post_data).encode())
 resp = urlopen(req)
