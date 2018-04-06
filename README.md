@@ -10,6 +10,7 @@ This script uses the following environment variables:
 | Env Var | Description |
 | --- | --- |
 | `TRIPIT_ICAL_URL` | **Required.** Your Tripit calendar is available from [your publishing settings](https://www.tripit.com/account/edit/section/publishing_options). Click the "Subscribe" link in the Calendar Feed section, then click the "Subscribe to calendar feed" option. |
+| `TRIPIT_HOME` | **Required.** Your home location. If you're not on a trip, this will be displayed as your current location. If you're on a trip and not immediately starting another, this will be shown as your next location. |
 | `SLACK_API_TOKEN` | **Required.** Generate a [Slack legacy token](https://api.slack.com/custom-integrations/legacy-tokens). Your token will begin with `xoxp-`. |
 | `SLACK_STATUS_EMOJI` | **Optional.** Slack status can include an emoji. Set your emoji (e.g. `:airplane:`). |
 
