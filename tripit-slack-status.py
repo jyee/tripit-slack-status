@@ -32,6 +32,7 @@ for event in cal.walk('vevent'):
             current_location = location
             current_location_start = dtstart
             current_location_end = dtend
+            next_location_start = dtend
 
         # If we're seeing a future event
         if dtstart > today:
@@ -43,15 +44,15 @@ for event in cal.walk('vevent'):
             elif current_location_end and current_location_end >= dtstart:
                 next_location = location
                 next_location_start = dtstart
-            # Otherwise, we're going home.
-            else:
-                next_location_start = current_location_end
             break;
 
 
+# Pretty format the status info and account for no upcoming trips.
+if current_location != next_location:
+    status = '{c.month}/{c.day}: {cloc} .. {n.month}/{n.day}: {nloc}'.format(c=current_location_start, cloc=current_location, n=next_location_start, nloc=next_location)
+else:
+    status = '{c.month}/{c.day}: {cloc}'.format(c=current_location_start, cloc=current_location)
 
-# Pretty format the status info.
-status = '{c.month}/{c.day}: {cloc} .. {n.month}/{n.day}: {nloc}'.format(c=current_location_start, cloc=current_location, n=next_location_start, nloc=next_location)
 emoji = os.environ.get('SLACK_STATUS_EMOJI') or ''
 
 # Setup the Slack API info.
